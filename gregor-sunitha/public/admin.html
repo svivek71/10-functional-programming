@@ -10,6 +10,19 @@
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
     <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200">
+    <script id="blog-stats" type="text/x-handlebars-template">
+      <section>
+        <dt>Total articles:</dt>{{totalArticles}}<dd class="articles"></dd>
+        <dt>Total words:</dt> <dd class="words">{{totalWords}}</dd>
+        <h2>Author Stats</h2>
+        <p><em>Details on who is writing, and how much writing they are doing...</em></p>
+        <ul class="author-stats">
+        </ul>
+      </section>
+    </script>
+    <script id="admin-template" type="text/x-handlebars-template">
+      <li><strong>{{name}}: {{numWords}}</strong></li>
+    </script>
   </head>
   <body>
     <header class="site-header clearfix">
@@ -48,7 +61,7 @@
     <script src="scripts/article.js"></script>
     <script src="scripts/articleView.js"></script>
     <script>
-      app.Article.fetchAll(app.Article.stats);
+      app.Article.fetchAll(app.articleView.initAdminPage);
     </script>
   </body>
 </html>

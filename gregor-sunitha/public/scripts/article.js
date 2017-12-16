@@ -39,14 +39,11 @@ var app = app || {};
   Article.stats = () => {
     Article.numWordsAll();
     Article.allAuthors();
-    //Article.numWordsByAuthor();
+    Article.numWordsByAuthor();
   };
 
   Article.numWordsAll = () => {
-    // console.log(Article.all[1]['body']);
-    // console.log(Article.all[1]['body'].length);
-    // console.log(Article.all[1]['body'].split(' ').reduce((acc,cur)=>acc + cur).length);
-    return Article.all.map(words => words['body'].split(' ').reduce((acc,cur)=>acc + cur).length);
+    return Article.all.map(x => x.body.split(' ').length).reduce((acc, curr) => acc + curr);
   };
 
   Article.allAuthors = () => {
@@ -59,34 +56,15 @@ var app = app || {};
       }, []);
   };
 
-  // NOT WORKING
-  // Article.allAuthors = () => {
-  //   //task: get total of unique author names.
-  //   console.log('inside all authors');
-  //   //return Article.all.map(v => console.log('these are our authors', Article.all[v]['author']));
-  //   console.log('article all authors',Article.all.map( (v, i) => {
-  //     return Article.all[i].author;
-  //   })
-  //   .reduce((prev, cur )=> {
-
-  //   }),['initialValue'])
-    
-  //   return Article.all.map( (v, i) => {return Article.all[i].author;})
-  //   // return Article.all.map( (value, i, arr) => { return arr.indexOf(value) === i; });
-  // };
-
-  Article.numWordsByAuthor = () => {
-    return Article.allAuthors().map(author => {})
-  };
-
-  Article.numWordsByAuthor = () => {
-    var prev;
-    return app.Article.all.map(article => article.author)
-      .reduce(function(result, cur) {
-        if (result.indexOf(cur) === -1) result.push(cur);
-        prev = cur;
-        return result;
-      }, []);
+  Article.numWordsByAuthor = () =>{
+    return Article.allAuthors().map(author => {
+      return {
+        name: author,
+        numWords: Article.all.filter(a => a.author === author) 
+          .map(a => a.body.match(/\b\w+/g).length)
+          .reduce((a,b) => a+b)
+      }
+    })
   };
 
   Article.truncateTable = callback => {
