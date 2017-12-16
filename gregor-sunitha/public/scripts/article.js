@@ -43,10 +43,7 @@ var app = app || {};
   };
 
   Article.numWordsAll = () => {
-    // console.log(Article.all[1]['body']);
-    // console.log(Article.all[1]['body'].length);
-    // console.log(Article.all[1]['body'].split(' ').reduce((acc,cur)=>acc + cur).length);
-    return Article.all.map(words => words['body'].split(' ').reduce((acc,cur)=>acc + cur).length);
+    return Article.all.map(x => x.body.split(' ').length).reduce((acc, curr) => acc + curr);
   };
 
   Article.allAuthors = () => {

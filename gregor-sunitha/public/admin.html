@@ -20,6 +20,9 @@
         </ul>
       </section>
     </script>
+    <script id="admin-template" type="text/x-handlebars-template">
+      <li><strong>{{name}}: {{numWords}}</strong></li>
+    </script>
   </head>
   <body>
     <header class="site-header clearfix">
@@ -58,7 +61,7 @@
     <script src="scripts/article.js"></script>
     <script src="scripts/articleView.js"></script>
     <script>
-      app.Article.fetchAll(app.Article.stats);
+      app.Article.fetchAll(app.articleView.initAdminPage);
     </script>
   </body>
 </html>
